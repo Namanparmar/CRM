@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="text-gray-600 body-font overflow-hidden bg-gray-50">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="lg:w-4/5 mx-auto flex flex-wrap shadow-md rounded-lg bg-white p-6">
+      
+      <!-- Image -->
+      <img alt="Lead Image" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded-lg"
+           src="https://dummyimage.com/400x400">
+
+      <!-- Lead Info -->
+      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+        <h2 class="text-sm title-font text-gray-500 tracking-widest uppercase">Lead Information</h2>
+        <h1 class="text-gray-900 text-4xl font-bold mb-4">{{ lead.first_name }} {{ lead.last_name }}</h1>
+
+        <!-- Navigation Tabs -->
+        <div class="flex mb-6 border-b border-gray-300">
+          <a href="{% url 'leads:lead-details' lead.pk %}"
+             class="text-indigo-600 border-b-2 border-indigo-600 pb-2 px-3 font-semibold">
+            Overview
+          </a>
+          <a class="text-gray-600 hover:text-indigo-600 pb-2 px-3 cursor-pointer transition">
+            Reviews
+          </a>
+          <a href="{% url 'leads:lead-update' lead.pk %}"
+             class="text-gray-600 hover:text-indigo-600 pb-2 px-3 cursor-pointer transition">
+            Update
+          </a>
+        </div>
+
+        <!-- Description -->
+        <p class="leading-relaxed text-gray-700 mb-6">
+          This lead might be a valuable customer for your business. Keep track of their details and reach out to build a meaningful connection.
+        </p>
+
+        <!-- Lead Details -->
+        <div class="space-y-4 text-sm text-gray-700">
+          <div class="flex justify-between border-b pb-2">
+            <span class="font-medium">Age:</span>
+            <span>{{ lead.age }}</span>
+          </div>
+          <div class="flex justify-between border-b pb-2">
+            <span class="font-medium">Location:</span>
+            <span>India</span>
+          </div>
+          <div class="flex justify-between border-b pb-2">
+            <span class="font-medium">Phone:</span>
+            <span>+91 0987654321</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-6 flex items-center gap-4">
+          <button class="flex items-center text-white bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-lg font-semibold transition">
+            Contact Lead
+          </button>
+          <button class="rounded-full w-10 h-10 bg-gray-100 hover:bg-gray-200 transition p-0 flex items-center justify-center text-red-500">
+            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                 stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5
+                       5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78
+                       1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

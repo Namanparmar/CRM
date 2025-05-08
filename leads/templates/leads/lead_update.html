@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="text-gray-600 body-font overflow-hidden bg-gray-50">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="lg:w-4/5 mx-auto flex flex-wrap shadow-lg rounded-xl bg-white p-6">
+      
+      <!-- Image -->
+      <img alt="Lead Image" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded-xl" src="https://dummyimage.com/400x400">
+
+      <!-- Form and Info -->
+      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+        <h2 class="text-sm title-font text-gray-500 tracking-widest uppercase">Lead</h2>
+        <h1 class="text-gray-900 text-3xl font-bold mb-4">{{ lead.first_name }} {{ lead.last_name }}</h1>
+
+        <!-- Tabs -->
+        <div class="flex mb-6 border-b border-gray-300">
+          <a href="{% url 'leads:lead-details' lead.pk %}" class="text-gray-600 hover:text-indigo-500 pb-2 px-3 cursor-pointer">
+            Overview
+          </a>
+          <span class="text-gray-600 pb-2 px-3 cursor-default">Reviews</span>
+          <a href="{% url 'leads:lead-update' lead.pk %}" class="text-indigo-600 border-b-2 border-indigo-600 pb-2 px-3 font-semibold">
+            Update Details
+          </a>
+        </div>
+
+        <!-- Form -->
+        <form method="post" class="space-y-4">
+          {% csrf_token %}
+          <div class="space-y-3">
+            {{ form.as_p }}
+          </div>
+          <button type="submit"
+                  class="w-full mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg transition">
+            Submit Changes
+          </button>
+        </form>
+
+        <!-- Delete Button -->
+        <a href="{% url 'leads:lead-delete' lead.pk %}"
+           class="w-full block text-center mt-4 bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg transition">
+          Delete Lead
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}
